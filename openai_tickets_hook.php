@@ -8,14 +8,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Orhanerday\OpenAi\OpenAi;
 
-$open_ai_key = getenv('OPENAI_API_KEY');
-$open_ai = new OpenAi($open_ai_key);
-
 if (!defined('WHMCS'))
     die('You cannot access this file directly.');
 
 function new_ticket_opened($vars) {
-    global $open_ai;
+    $open_ai_key = getenv('OPENAI_API_KEY');
+    $open_ai = new OpenAi($open_ai_key);
     $ticket_subject = $vars['subject'];
     $ticket_message = $vars['message'];
 
